@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { rows: 0, cols: 0 };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({
+      rows: Math.floor(window.innerHeight / 100),
+      cols: Math.floor(window.innerWidth / 100),
+    });
+  }
+
+  makeTiles() {
+    let tileContainer = document.getElementById("TileContainer");
+    for (let i = 0; i < this.state.cols * this.state.rows; i++) {
+      let tmp = document.createElement("div");
+      tmp.className = "Tile";
+      tileContainer.appendChild(tmp);
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello World!</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Rows: {this.state.rows} Cols: {this.state.cols}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <div className="Tiles" id="TileContainer">
+          {this.makeTiles()}
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
