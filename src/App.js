@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import TileBoard from "./Components/TileBoard";
+import Letter from "./Components/Letter";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -43,21 +44,11 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <div className="Row">
-          <div className="Letter" spot="1">
-            T
-          </div>
-          <div className="Letter" spot="2">
-            I
-          </div>
-          <div className="Letter" spot="3">
-            L
-          </div>
-          <div className="Letter" spot="4">
-            E
-          </div>
-          <div className="Letter" spot="5">
-            S
-          </div>
+          <Letter spot="1" text="T" />
+          <Letter spot="2" text="I" />
+          <Letter spot="3" text="L" />
+          <Letter spot="4" text="E" />
+          <Letter spot="5" text="S" />
         </div>
         {/*<p style={{ marginTop: "0px" }}>Rows: {this.state.rows} Cols: {this.state.cols}</p>*/}
         <TileBoard rows={this.state.rows} cols={this.state.cols} />

@@ -11,26 +11,3 @@
   display: flex;
   flex-direction: row;
 }
-
-.Letter {
-  flex: 1 1;
-  font-size: 3em;
-  color: white;
-  border-radius: 4px;
-}
-
-.Letter:hover {
-  background-color: aqua;
-}
-
-.Letter[spot="1"],
-.Letter[spot="2"] {
-  text-shadow: 2px 2px 2px hsl(0, 0%, 70%);
-}
-.Letter[spot="3"] {
-  text-shadow: 0px 2px 2px hsl(0, 0%, 70%);
-}
-.Letter[spot="4"],
-.Letter[spot="5"] {
-  text-shadow: -2px 2px 2px hsl(0, 0%, 70%);
-}

@@ -3,6 +3,7 @@ import "./TileBoard.css";
 
 function Tile(props) {
   const [color, setColor] = useState("white");
+  let shadow = "lightgrey";
 
   let getRandomColor = () => {
     let h = Math.floor(Math.random() * 360);
@@ -14,8 +15,12 @@ function Tile(props) {
   return (
     <div
       className="Tile"
-      onClick={() => setColor(getRandomColor())}
-      style={{ backgroundColor: color }}
+      onClick={() => {
+        let newColor = getRandomColor();
+        setColor(newColor);
+        shadow = newColor;
+      }}
+      style={{ backgroundColor: color, color: shadow }}
     ></div>
   );
 }
