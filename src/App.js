@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import TileBoard from "./Components/TileBoard";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -20,16 +20,21 @@ export default class App extends React.Component {
 
   updateWindowDimensions() {
     this.setState({
-      rows: Math.floor(window.innerHeight / 100),
-      cols: Math.floor(window.innerWidth / 100),
+      rows: Math.floor(window.innerHeight / 80),
+      cols: Math.floor(window.innerWidth / 77),
     });
   }
 
   makeTiles() {
     let tileContainer = document.getElementById("TileContainer");
-    for (let i = 0; i < this.state.cols * this.state.rows; i++) {
+    for (let r = 0; r < this.state.rows; r++) {
       let tmp = document.createElement("div");
-      tmp.className = "Tile";
+      tmp.className = "Row";
+      for (let c = 0; c < this.state.cols; c++) {
+        let tile = document.createElement("div");
+        tile.className = "Tile";
+        tmp.appendChild(tile);
+      }
       tileContainer.appendChild(tmp);
     }
   }
@@ -37,13 +42,15 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello World!</h1>
-        <p>
-          Rows: {this.state.rows} Cols: {this.state.cols}
-        </p>
-        <div className="Tiles" id="TileContainer">
-          {this.makeTiles()}
+        <div className="Row">
+          <div className="Letter">T</div>
+          <div className="Letter">I</div>
+          <div className="Letter">L</div>
+          <div className="Letter">E</div>
+          <div className="Letter">S</div>
         </div>
+        {/*<p style={{ marginTop: "0px" }}>Rows: {this.state.rows} Cols: {this.state.cols}</p>*/}
+        <TileBoard rows={this.state.rows} cols={this.state.cols} />
       </div>
     );
   }
