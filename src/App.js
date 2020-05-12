@@ -43,11 +43,21 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <div className="Row">
-          <div className="Letter">T</div>
-          <div className="Letter">I</div>
-          <div className="Letter">L</div>
-          <div className="Letter">E</div>
-          <div className="Letter">S</div>
+          <div className="Letter" spot="1">
+            T
+          </div>
+          <div className="Letter" spot="2">
+            I
+          </div>
+          <div className="Letter" spot="3">
+            L
+          </div>
+          <div className="Letter" spot="4">
+            E
+          </div>
+          <div className="Letter" spot="5">
+            S
+          </div>
         </div>
         {/*<p style={{ marginTop: "0px" }}>Rows: {this.state.rows} Cols: {this.state.cols}</p>*/}
         <TileBoard rows={this.state.rows} cols={this.state.cols} />
