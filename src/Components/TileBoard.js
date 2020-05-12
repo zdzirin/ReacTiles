@@ -6,9 +6,9 @@ function Tile(props) {
 
   let getRandomColor = () => {
     let h = Math.floor(Math.random() * 360);
+    let s = Math.floor(Math.random() * 40) + 20;
     let l = Math.floor(Math.random() * 30) + 30;
-    alert(`hsl(${h},20,${l})`);
-    return `hsl(${h},20,${l})`;
+    return `hsl(${h},${s}%,${l}%)`;
   };
 
   return (
