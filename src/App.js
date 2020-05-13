@@ -13,31 +13,31 @@ export default class App extends React.Component {
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
+    window.addEventListener("scroll", () => this.addRows());
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowDimensions);
+    window.removeEventListener("scroll", () => this.addRows());
   }
 
   updateWindowDimensions() {
     this.setState({
-      rows: Math.floor(window.innerHeight / 80),
+      rows: Math.floor(window.innerHeight / 77),
       cols: Math.floor(window.innerWidth / 77),
     });
   }
 
-  makeTiles() {
-    let tileContainer = document.getElementById("TileContainer");
-    for (let r = 0; r < this.state.rows; r++) {
-      let tmp = document.createElement("div");
-      tmp.className = "Row";
-      for (let c = 0; c < this.state.cols; c++) {
-        let tile = document.createElement("div");
-        tile.className = "Tile";
-        tmp.appendChild(tile);
-      }
-      tileContainer.appendChild(tmp);
-    }
+  addRows() {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    )
+      return;
+    let rows = this.state.rows + 10;
+    this.setState({
+      rows: rows,
+    });
   }
 
   render() {

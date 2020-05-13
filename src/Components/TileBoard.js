@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TileBoard.css";
 
 function Tile(props) {
@@ -33,13 +33,18 @@ export default function TileBoard(props) {
     }
     return row;
   };
-  let makeRows = () => {
+
+  let makeRows = (rows) => {
     let board = [];
-    for (let r = 0; r < props.rows; r++) {
+    for (let r = 0; r < rows; r++) {
       board.push(<div className="Row">{makeTiles()}</div>);
     }
     return board;
   };
 
-  return <div className="Tiles">{makeRows()}</div>;
+  return (
+    <div className="Tiles" id="TilesContainer">
+      {makeRows(props.rows)}
+    </div>
+  );
 }
